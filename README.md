@@ -1,4 +1,4 @@
-# ClearWrite ✍
+# ClearWrite 🖋️
 
 A dynamic blog website featuring secure user authentication, a search bar for finding posts, and a commenting system for user interaction. Secure Log In and Sign Up using hashing and JWT.
 
