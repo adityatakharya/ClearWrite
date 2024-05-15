@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("./partials/head.ejs") %>
+    <title>Home | Clear Write</title>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="container mt-5">
+        <div style="margin-bottom: 30px;">
+            <h1 class="mb-3"><%= currBlog.title %></h1>
+            <p> <%= currBlog.description %></p>
+        </div>
+        <hr>
+        <hr style="margin-bottom: 20px;">
+        <pre style="white-space: pre-wrap; word-wrap: break-word;"><%= currBlog.body %></pre>
+        <br>
+        <h5 class="mb-3 mt-4"> Author </h5>
+        <img src="<%= currBlog.createdBy.profileImageURL %>" width="60px" style="margin-right: 8px;"> <i><%= currBlog.createdBy.fullName %></i>
+        <hr style="margin-top: 20px">
+        <hr>
+        <br>
+    </div>
+    <div class="container">
+        <h3 class="mb-3">Comments (<%= currComments.length %>) </h3>
+        <% if(locals.currUser){ %>
+        <form action="/blog/comments/<%= currBlog._id %>" method="post">              
+            <div class="mb-3">
+              <input type="text" class="form-control" name="content" placeholder="Write your comment here...">
+            </div>
+            <button type="submit" class="btn btn-primary mb-5">Submit</button>
+          </form>
+        <% } %>
+        <% if(locals.currComments) { 
+            currComments.forEach(comment => { %>
+                <div class="container comment-container mb-3">
+                <img src="<%= comment.createdBy.profileImageURL %>" width="35px" style="margin-right: 8px;"> <b><%= comment.createdBy.fullName %> </b>
+                <pre style="margin-left: 42px;"> <%= comment.content %> </pre>
+                </div>
+        <% })} %>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <%- include("./partials/scripts.ejs") %>
+</body>
+</html>

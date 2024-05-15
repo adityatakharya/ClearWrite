@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("./partials/head.ejs") %>
+    <title>Home | Clear Write</title>
+    <style>
+        .card-img-top {
+            width: 18rem; /* Set a fixed width */
+            height: 150px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the entire image is visible within the container */
+        }
+        body{
+            background-color: rgb(240, 240, 240);;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="container mt-3">
+        <div class="row row-cols-3">
+            <% allBlogs.forEach(blog => { %>
+                <div class="col" style="margin-bottom: 20px;">
+                    <div class="card col" style="width: 18rem;">
+                        <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="coverImage">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.title %></h5>
+                            <p class="card-text"><%= blog.description %></p>
+                            <a href="blog/view/<%= blog._id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <%- include("./partials/scripts.ejs") %>
+</body>
+</html>
